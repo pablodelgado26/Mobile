@@ -1,42 +1,17 @@
-import { View, Text, Button, StyleSheet } from "react-native";
-import { Link, Stack, useNavigation } from 'expo-router';
+import { View, Text, Pressable, StyleSheet} from "react-native";
+import { Link } from 'expo-router';
 
 export default function Home() {
-    const navigation = useNavigation();
-
-    const handHideHeader = () => {
-        navigation.setOptions({ headerShown: false, });
-    }
-    const handOffHeader = () => {
-        navigation.setOptions({ headerShown: true, });
-    }
     return (
 
         <View style={styles.container}>
-            <Stack.Screen options={{
-                title: 'Senai',
-                headerRight: () => (
-                    <Button
-                        onPress={() => alert('Olá, aula de mobile')}
-                        title="Info"
-                        color="#000"
-                    />
-                ),
-                headerStyle: {
-                    backgroundColor: '#FFD700',
-                },
-                headerTintColor: '#000',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                    fontSize: 30,
-                }
-            }} />
+            <Link href="/sobre" asChild>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText} >Ir para Sobre</Text>
+                </Pressable>            
+            </Link>
 
-            <Button title="Ocultar Header" onPress={handHideHeader} />
-            <Button title="Ativar Header" onPress={handOffHeader} />
-
-            <Text>Bem-vindo à tela inicial!</Text>
-            <Link href="/sobre">Ir para Sobre</Link>
+            <Link href="/termos">Leia os Termos</Link>
         </View>
 
     );
@@ -50,6 +25,18 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom: 20
+    },
+    button: {
+        backgroundColor: '#007bff',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        textAlign: 'center'
     }
 });
